@@ -1,6 +1,0 @@
-FROM python:3.7
-WORKDIR /service4_comb
-RUN pip install Flask
-COPY app.py . 
-EXPOSE 5004
-ENTRYPOINT ["python", "app.py"]
