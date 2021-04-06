@@ -1,5 +1,5 @@
 import random 
-from flask import Flask
+from flask import Flask , render_template
 
 app = Flask(__name__)
 
@@ -21,8 +21,7 @@ def letter_gen():
     #list comphrension, using one list with another 
     vowel_count = [i for i in letter if i in vowels]
     consonant_count = [i for i in letter if i in consonant]
-    return f"{len(vowel_count)} {len(consonant_count)} {dash_list_let}"
-
+    return f"{len(vowel_count)} {len(consonant_count)} {dash_list_let}" 
 if __name__ == '__main__':
     app.run(host = "0.0.0.0", port = 5002, debug= True )
 
