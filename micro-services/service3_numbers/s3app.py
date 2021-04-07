@@ -4,7 +4,7 @@ from flask import Flask
 app = Flask(__name__)
 
 
-@app.route("/number_gen")
+@app.route("/number", methods=['GET'])
 def number_gen():
     number_list = ['1','2','3','4','5','6','7','8']
     even = '2468'

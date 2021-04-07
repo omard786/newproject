@@ -1,0 +1,11 @@
+pipeline{
+    agent any
+    environment{}
+    
+}
+stages{
+    stage('Test'){
+        //run pytest
+    stage ('Build'){
+        sh 'docker-compose build'
+}   

@@ -4,7 +4,7 @@ from flask import Flask , render_template
 app = Flask(__name__)
 
 
-@app.route("/letter_gen")
+@app.route("/letter", methods=['GET'])
 def letter_gen():
     letter_list = ['A','E','I','U','B','F','J','V']
     vowels = 'AEIU'
