@@ -5,9 +5,9 @@ app = Flask(__name__)
 
 @app.route('/g', methods=['GET'])
 def generator():
-    letter_list = requests.get('http://service2_letters:5002/letter').text
-    number_list=requests.get('http://service3_numbers:5003/number').text
-
+    letter_list = requests.get('http://service2_letters:5002/letter').json()
+    number_list=requests.get('http://service3_numbers:5003/number').json()
+    return letter_list
 
 # @app.route("/service2", methods=['GET']) 
 # def service2():

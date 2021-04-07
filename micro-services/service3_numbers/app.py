@@ -20,7 +20,11 @@ def number_gen():
     # print ('you have this many even numbers : ', len(even_count))
     odd_count = [i for i in number if i in odd]
     # print ('you have this many odd numbers : ', len(odd_count))
-    return f"{len(even_count)} {len(odd_count)} {dash_list_num}"
+    num_package = {
+        "even_count": len(even_count), "odd_count":len(odd_count), "dash_list_num": dash_list_num
+    }
+    return jsonify(num_package)
+    # return f"{len(even_count)} {len(odd_count)} {dash_list_num}"
 
 
 
