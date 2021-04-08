@@ -32,6 +32,8 @@ def generator():
     for i in number_list:
         if int(i)%2 != 0:
             odd_count= odd_count + 1
+        elif int(i)%2 ==0:
+            even_count=even_count + 1 
 
 
     prize = "nothing"
@@ -44,7 +46,7 @@ def generator():
     
 
     packet = {
-       "combined_list":combined_list, "vowel_count":vowel_count, "odd_count": odd_count, "prize":prize
+       "combined_list":combined_list, "vowel_count":vowel_count, "even_count":even_count, "odd_count": odd_count, "prize":prize, 
     }
 
     return packet

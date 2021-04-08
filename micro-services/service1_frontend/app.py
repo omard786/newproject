@@ -1,8 +1,13 @@
 from wtforms import StringField, SubmitField
 from flask_wtf import FlaskForm
 from flask import Flask, request, redirect, jsonify
+import requests
 
 app = Flask(__name__)
+s4_logic= requests.get("http://service4_comb:5004/g").json()
+
+s4_logic["combined_list"]
+
 
 #connecting to database
 app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:qwerty123@35.246.88.163/generator"
@@ -11,6 +16,7 @@ db = SQLAlchemy(app)
 
 #secretkey for forms
 app.config['SECRET_KEY'] = 'qwerty123'
+
 
 
 class registrationform(FlaskForm):
@@ -39,4 +45,4 @@ def sign_up():
                 db.session.add(new_player)
                 db.session.commit()
 
-json={"s2_numbers":s2_numbers,"s3_letters":s3_letters}).text
+# json={"s2_numbers":s2_numbers,"s3_letters":s3_letters}).text
