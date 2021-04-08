@@ -1,26 +1,36 @@
 from flask import Flask, jsonify, json
 import requests
-from flask_sqlalchemy import SQLALchemy
-from flask_wtf import FlaskForm
+# from flask_sqlalchemy import SQLALchemy
+# from flask_wtf import FlaskForm
 
 app = Flask(__name__)
 
 
 
 
-# @app.route('/g', methods=['GET'])
-# def generator():
-#     letter_list = requests.get('http://service2_letters:5002/letter').json()
-#     number_list=requests.get('http://service3_numbers:5003/number').json()
-#     return letter_list
+@app.route('/g', methods=['GET'])
+def generator():
+    letter_list = requests.get('http://service2_letters:5002/letter').json()
+    number_list=requests.get('http://service3_numbers:5003/number').json()
+
+    if letter_list["vowel_count"] >=2 and number_list["even_count"] >=2:
+        print ("you have won a gold prize")
+
+    return jsonify(
+        {
+         "letter_list":letter_list, "number_list":number_list
+        }
+    )
+
+
 
 # j_letter= requests.get('http://localhost:5002/letter')
 # data = json.loads(j_letter)
 # print(data)
-j_letter= requests.get('http://localhost:5002/letter')
-j_number= requests.get('http://localhost:5003/number')
-print(j_letter.content)
-print(j_number.content)
+# j_letter= requests.get('http://localhost:5002/letter')
+# j_number= requests.get('http://localhost:5003/number')
+# print(j_letter.content)
+# print(j_number.content)
 
 # @app.route("/service2", methods=['GET']) 
 # def service2():
