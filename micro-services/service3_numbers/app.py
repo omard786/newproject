@@ -5,7 +5,7 @@ from flask import Flask, jsonify
 app = Flask(__name__)
 
 
-@app.route("/number", methods=['GET'])
+@app.route("/numbers", methods=['GET'])
 def number_gen():
     number_list = ['1','2','3','4','5','6','7','8']
     random_string = "" 

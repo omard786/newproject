@@ -40,7 +40,7 @@ def generator():
         prize = "you have won a silver prize"
     elif  (vowel_count) <=2 or (even_count) <=2:
         prize = "you have won a bronze prize"
-        
+
     packet = {
        "combined_list":combined_list, "vowel_count":vowel_count, "even_count":even_count, "odd_count": odd_count, "prize":prize, 
     }

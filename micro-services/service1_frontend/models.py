@@ -8,4 +8,4 @@ class prize(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     number_generated= db.Column(db.String(15), nullable=False)
     prize_won = db.Column(db.String(15), nullable=False)
-    player_id = db.Column(db.String(15), foreignkey=False)
+    player= db.relationship('player_reg', backref = 'prize')
