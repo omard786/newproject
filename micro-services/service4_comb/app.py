@@ -14,7 +14,6 @@ def generator():
     number_list=requests.get('http://service3_numbers:5003/number').json()
 
   #inputting my tariff
-    prizes:
         if letter_list.count(vowel_count) >=2 and number_list.count(even_count) >=2:
         print("you have won a gold prize")
         elif:

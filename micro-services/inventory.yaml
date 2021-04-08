@@ -1,0 +1,9 @@
+all:
+  hosts:
+    instance-1:
+    workers:
+      w1:
+      w2:
+    proxy:
+      nginx:
+    vars: 
