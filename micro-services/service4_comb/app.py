@@ -9,11 +9,12 @@ app = Flask(__name__)
 
 
 
-@app.route('/g', methods=['GET'])
+@app.route('/generator', methods=['GET'])
 def generator():
     # connect = request.get()
-    letter_list = requests.get('http://service2_letters:5002/letter').text
-    number_list=requests.get('http://service3_numbers:5003/number').text
+    letter_list = requests.get('http://service2_letters:5002/letters').text
+    number_list=requests.get('http://service3_numbers:5003/numbers').text
+    app.logger.info(str(number_list))
 
     combined_list = letter_list + number_list
     vowel_count = 0 
@@ -28,9 +29,9 @@ def generator():
     if ("U" in letter_list):
         vowel_count = vowel_count + 1
     for i in number_list:
-        if int(i)%2 != 0:
+        if int(i)%2 != 0 :
             odd_count= odd_count + 1
-        elif int(i)%2 ==0:
+        elif int(i)%2 == 0 :
             even_count=even_count + 1 
 #inputting my tariff (conditions)
     prize = "nothing"
