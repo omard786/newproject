@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, json
 import requests
+import string 
 # from flask_sqlalchemy import SQLALchemy
 # from flask_wtf import FlaskForm
 
@@ -10,36 +11,59 @@ app = Flask(__name__)
 
 @app.route('/g', methods=['GET'])
 def generator():
-    letter_list = requests.get('http://service2_letters:5002/letter').json()
-    number_list=requests.get('http://service3_numbers:5003/number').json()
+    # connect = request.get()
+    letter_list = requests.get('http://service2_letters:5002/letter').text
+    number_list=requests.get('http://service3_numbers:5003/number').text
 
   #inputting my tariff
-        if letter_list.count(vowel_count) >=2 and number_list.count(even_count) >=2:
-        print("you have won a gold prize")
-        elif:
-        letter_list.count(vowel_count) <=2 and number_list.count(even_count) =1 or letter_list.count(vowel_count) <=1 and number_list.count(even_count) =2:
-        print("you have won a silver prize")
-        elif: letter_list.count(vowel_count) <=2 or number_list.count(even_count) <=2:
-        print("you have won a bronze prize")
-        s4_gen = {
-         "letter_list":letter_list, "number_list":number_list, 
-        }
+
+    combined_list = letter_list + number_list
+    vowel_count = 0 
+    even_count = 0 
+    odd_count = 0 
+    if ("A" in letter_list):
+        vowel_count = vowel_count + 1
+    if ("E" in letter_list): 
+        vowel_count = vowel_count + 1
+    if ("I" in letter_list):
+        vowel_count = vowel_count + 1
+    if ("U" in letter_list):
+        vowel_count = vowel_count + 1
+    for i in number_list:
+        if int(i)%2 != 0:
+            odd_count= odd_count + 1
+
+
+    prize = "nothing"
+    if (vowel_count) >=2 and (even_count) >=2:
+        prize = "you have won a gold prize"
+    elif (vowel_count) <=2 and (even_count) <=1 or (vowel_count) <=1 and (even_count) <=2 :
+        prize = "you have won a silver prize"
+    elif  (vowel_count) <=2 or (even_count) <=2:
+        prize = "you have won a bronze prize"
+    
+
+    packet = {
+       "combined_list":combined_list, "vowel_count":vowel_count, "odd_count": odd_count, "prize":prize
+    }
+
+    return packet
 
 
 
-    if letter_list["vowel_count"] >=2 and number_list["even_count"] >=2:
-        print ("you have won a gold prize")
+#     if letter_list["vowel_count"] >=2 and number_list["even_count"] >=2:
+#         print ("you have won a gold prize")
 
-    return jsonify(
-        {
-         "letter_list":letter_list, "number_list":number_list
-        }
-    )
+#     return jsonify(
+#         {
+#          "letter_list":letter_list, "number_list":number_list
+#         }
+#     )
 
-prize_tariff = {
-    "gold": len(even_count) >=2 and len(vowel_count) >=2, 
-    "silver": len()
-}
+# prize_tariff = {
+#     "gold": len(even_count) >=2 and len(vowel_count) >=2, 
+#     "silver": len()
+# }
 
 # j_letter= requests.get('http://localhost:5002/letter')
 # data = json.loads(j_letter)

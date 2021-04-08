@@ -1,7 +1,16 @@
 from wtforms import StringField, SubmitField
 from flask_wtf import FlaskForm
-from flask import Flask, request, redirect
+from flask import Flask, request, redirect, jsonify
 
+app = Flask(__name__)
+
+#connecting to database
+app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:qwerty123@35.246.88.163/generator"
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)
+
+#secretkey for forms
+app.config['SECRET_KEY'] = 'qwerty123'
 
 
 class registrationform(FlaskForm):
@@ -29,4 +38,5 @@ def sign_up():
                 new_player = models.player_reg(first_name=firstname, last_name=lastname, age=age)
                 db.session.add(new_player)
                 db.session.commit()
-            return redi
+
+json={"s2_numbers":s2_numbers,"s3_letters":s3_letters}).text
