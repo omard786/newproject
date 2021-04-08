@@ -15,8 +15,6 @@ def generator():
     letter_list = requests.get('http://service2_letters:5002/letter').text
     number_list=requests.get('http://service3_numbers:5003/number').text
 
-  #inputting my tariff
-
     combined_list = letter_list + number_list
     vowel_count = 0 
     even_count = 0 
@@ -34,8 +32,7 @@ def generator():
             odd_count= odd_count + 1
         elif int(i)%2 ==0:
             even_count=even_count + 1 
-
-
+#inputting my tariff (conditions)
     prize = "nothing"
     if (vowel_count) >=2 and (even_count) >=2:
         prize = "you have won a gold prize"
@@ -43,8 +40,7 @@ def generator():
         prize = "you have won a silver prize"
     elif  (vowel_count) <=2 or (even_count) <=2:
         prize = "you have won a bronze prize"
-    
-
+        
     packet = {
        "combined_list":combined_list, "vowel_count":vowel_count, "even_count":even_count, "odd_count": odd_count, "prize":prize, 
     }

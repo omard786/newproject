@@ -2,47 +2,28 @@ from wtforms import StringField, SubmitField
 from flask_wtf import FlaskForm
 from flask import Flask, request, redirect, jsonify
 import requests
-
 app = Flask(__name__)
-s4_logic= requests.get("http://service4_comb:5004/g").json()
-
-s4_logic["combined_list"]
-
-
 #connecting to database
 app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:qwerty123@35.246.88.163/generator"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
-#secretkey for forms
-app.config['SECRET_KEY'] = 'qwerty123'
+class prize(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    number_generated= db.Column(db.String(15), nullable=False)
+    prize_won = db.Column(db.String(15), nullable=False)
+    player_id = db.Column(db.String(15), foreignkey=False)
+
+@app.route('/',methods=['GET', 'POST'])
+def home():
+    s2_letter = requests.get('http://localhost:5002/numbers').text
+    s3_number = requests.get('http://localhost:5003/letters').text
+    s4_comb = requests.post('http://localhost:5004/winner',json={"service_numbers":service_two,"service_letters":service_three}).text
+    prize_given = prize( number_generated= s4_comb["combined_list"], prize_won = s4_comb["prize"])
+    db.session.add(prize_given)
+    db.session.commit()
+    return render_template('home.html', number_generated= s4_comb["combined_list"], prize_won = s4_comb["prize"])
 
 
-
-class registrationform(FlaskForm):
-    first_name = StringField('first name')
-    last_name = StringField('last name')
-    age = StringField('age')
-    submit = SubmitField('sign up')
-
-
-@app.route('/sign_up', methods=['GET', 'POST']) 
-#@app.route('/home', methods=['GET', 'POST'])
-def sign_up():
-    error=""
-    form=registrationform()
-    #this ensures the data from the website is transmitted to database 
-    if(request.method=='POST'):
-        firstname=form.first_name.data
-        lastname=form.last_name.data
-        age = form.age.data
-        #this doesnt let the fields be empty 
-        if len(firstname) == 0 or len(lastname) == 0 or len(age) == 0:
-            error="please fill in all fields"
-        else:
-        
-                new_player = models.player_reg(first_name=firstname, last_name=lastname, age=age)
-                db.session.add(new_player)
-                db.session.commit()
-
-# json={"s2_numbers":s2_numbers,"s3_letters":s3_letters}).text
+if __name__ == '__main__':
+    app.run(port=5001, debug=True, host='0.0.0.0')
