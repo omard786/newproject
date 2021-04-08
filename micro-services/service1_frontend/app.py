@@ -1,5 +1,6 @@
 from wtforms import StringField, SubmitField
 from flask_wtf import FlaskForm
+from flask import Flask, request, redirect
 
 
 
@@ -28,3 +29,4 @@ def sign_up():
                 new_player = models.player_reg(first_name=firstname, last_name=lastname, age=age)
                 db.session.add(new_player)
                 db.session.commit()
+            return redi
