@@ -5,13 +5,8 @@ from flask_wtf import FlaskForm
 
 app = Flask(__name__)
 
-#connecting to database
-app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:qwerty123@35.246.88.163/generator"
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
 
-#secretkey for forms
-app.config['SECRET_KEY'] = 'qwerty123'
+
 
 # @app.route('/g', methods=['GET'])
 # def generator():

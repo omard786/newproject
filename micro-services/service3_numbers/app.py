@@ -20,6 +20,7 @@ def number_gen():
     # print ('you have this many even numbers : ', len(even_count))
     odd_count = [i for i in number if i in odd]
     # print ('you have this many odd numbers : ', len(odd_count))
+    #wrapping this into a json package so its extractable for my service 4 
     num_package = {
         "even_count": len(even_count), "odd_count":len(odd_count), "dash_list_num": dash_list_num
     }
