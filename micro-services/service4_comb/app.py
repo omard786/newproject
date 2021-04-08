@@ -13,6 +13,21 @@ def generator():
     letter_list = requests.get('http://service2_letters:5002/letter').json()
     number_list=requests.get('http://service3_numbers:5003/number').json()
 
+  #inputting my tariff
+    prizes:
+        if letter_list.count(vowel_count) >=2 and number_list.count(even_count) >=2:
+        print("you have won a gold prize")
+        elif:
+        letter_list.count(vowel_count) <=2 and number_list.count(even_count) =1 or letter_list.count(vowel_count) <=1 and number_list.count(even_count) =2:
+        print("you have won a silver prize")
+        elif: letter_list.count(vowel_count) <=2 or number_list.count(even_count) <=2:
+        print("you have won a bronze prize")
+        s4_gen = {
+         "letter_list":letter_list, "number_list":number_list, 
+        }
+
+
+
     if letter_list["vowel_count"] >=2 and number_list["even_count"] >=2:
         print ("you have won a gold prize")
 
@@ -22,7 +37,10 @@ def generator():
         }
     )
 
-
+prize_tariff = {
+    "gold": len(even_count) >=2 and len(vowel_count) >=2, 
+    "silver": len()
+}
 
 # j_letter= requests.get('http://localhost:5002/letter')
 # data = json.loads(j_letter)
