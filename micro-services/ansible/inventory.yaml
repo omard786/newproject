@@ -1,11 +1,11 @@
 all:
-jenkins:
   hosts:
-    project:
-swarm_worker:
+    jenkins:
+      project:
   hosts:
-    w1:
-    w2:
-proxy:
+    swarm_worker:
+      w1:
+      w2:
   hosts:
-    nginx:
+    proxy:
+      nginx:

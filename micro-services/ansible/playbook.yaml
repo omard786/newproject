@@ -1,17 +1,13 @@
-- name: install proxy nginx
-    apt:
-      name: nginx
-      state: present
-      update_cache: true
+- hosts: jenkins
+  roles:
+  - docker
+  - manager
 
-  - name: Copy nginx conf
-    copy:
-      src: nginx.conf
-      dest: /etc/nginx/nginx.conf
-    register: nginx_config
+- hosts: swarm_worker
+  roles:
+  - docker 
+  - worker
 
-  - name: Restart nginx if needed
-    service:
-      name: nginx
-      state: restarted
-    when: nginx_config.changed == true
+- hosts: 
+  roles: 
+  - nginx
