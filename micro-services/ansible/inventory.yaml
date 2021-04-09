@@ -9,3 +9,5 @@ all:
   hosts:
     proxy:
       nginx:
+  vars:
+    
