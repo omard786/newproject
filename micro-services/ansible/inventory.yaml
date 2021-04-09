@@ -1,0 +1,11 @@
+
+jenkins:
+  hosts:
+    instance-1:
+swarm_worker:
+  hosts:
+    w1:
+    w2:
+nginx:
+  hosts:
+    nginx:
