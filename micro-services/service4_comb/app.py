@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, json
+from flask import Flask, Response, jsonify, json
 import requests
 import string 
 # from flask_sqlalchemy import SQLALchemy
@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 
 
-@app.route('/generator', methods=['GET'])
+@app.route('/generator', methods=['GET', 'POST'])
 def generator():
     # connect = request.get()
     letter_list = requests.get('http://service2_letters:5002/letters').text
@@ -42,11 +42,11 @@ def generator():
     elif  (vowel_count) <=2 or (even_count) <=2:
         prize = "you have won a bronze prize"
 
-    packet = {
+    return jsonify({
        "combined_list":combined_list, "vowel_count":vowel_count, "even_count":even_count, "odd_count": odd_count, "prize":prize, 
-    }
+    })
 
-    return packet
+    # return packet
 
 
 
