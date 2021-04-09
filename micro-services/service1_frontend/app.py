@@ -4,10 +4,11 @@ import requests
 from flask_sqlalchemy import SQLAlchemy
 import string
 import random
+from os import getenv 
 
 app = Flask(__name__)
 #connecting to database
-app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:qwerty123@34.89.15.126/generator"
+app.config['SQLALCHEMY_DATABASE_URI'] = getenv("DATABASE_URI")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 

@@ -1,6 +1,6 @@
 all:
   hosts:
-    instance-1:
+    project:
     workers:
       w1:
       w2:

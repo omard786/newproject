@@ -1,14 +1,13 @@
 pipeline {
     agent any
-    environment{}
+    environment{
+        DATABASE_URI = credientials("DATABASE_URI")
+    }
     stages{
         stage('Test'){
-
-            //run pytest
-            
+            sh 'bash ./pre.sh'
         }
         stage('Build'){
-
             sh 'docker-compose build'
             sh 'docker-compose up -d'
         }
@@ -18,8 +17,8 @@ pipeline {
             sh 'docker-compose push'
 
         }
-        stage('Sending Swarm'){
-            //run playbook define inventory
+        stage('config and Send Swarm'){
+             sh 'ansible-playbook -i inventory.yaml playbook-1.yaml'
             
         }
         stage('Deploy'){

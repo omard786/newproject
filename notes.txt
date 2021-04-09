@@ -29,3 +29,7 @@ def sign_up():
 
 #secretkey for forms
 app.config['SECRET_KEY'] = 'qwerty123'
+
+"mysql+pymysql://root:qwerty123@34.89.15.126/generator"
+
+jenk- c59fb57c75c54cec9842f8dbe38c2828
