@@ -1,30 +1,41 @@
 pipeline {
     agent any
     environment{
-        DATABASE_URI = credientials("DATABASE_URI")
+        DATABASE_URI = credientials('DATABASE_URI')
     }
     stages{
         stage('Test'){
-            sh 'bash ./pre.sh'
+            steps{
+              sh 'bash ./pre.sh'
+
+            }
         }
         stage('Build'){
-            sh 'docker-compose build'
-            sh 'docker-compose up -d'
+            steps{
+                sh 'docker-compose up -d'
+                sh 'docker-compose build'
+            }
         }
         stage('Push'){
+            steps{
+                sh 'docker ps'
+                sh 'docker-compose push'
+            }
 
-            sh 'docker ps'
-            sh 'docker-compose push'
 
         }
-        stage('config and Send Swarm'){
-             sh 'ansible-playbook -i inventory.yaml playbook-1.yaml'
+        stage('config and Set Swarm'){
+            steps{
+                 sh 'ansible-playbook -i inventory.yaml playbook-1.yaml'
+             }
             
         }
         stage('Deploy'){
+            steps{
+                sh 'docker stack deploy --compose-file docker-compose.yaml'
+                sh 'docker stack services'
+            }
 
-            sh 'docker stack deploy --compose-file docker-compose.yaml'
-            sh 'docker stack services'
         }
     }
 }
