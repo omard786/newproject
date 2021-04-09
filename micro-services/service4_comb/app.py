@@ -43,7 +43,7 @@ def generator():
         prize = "you have won a bronze prize"
 
     return jsonify({
-       "combined_list":combined_list, "vowel_count":vowel_count, "even_count":even_count, "odd_count": odd_count, "prize":prize, 
+       "combined_list":combined_list, "vowel_count":vowel_count, "even_count":even_count, "odd_count": odd_count, "prize":prize,  
     })
 
     # return packet

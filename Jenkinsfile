@@ -19,8 +19,8 @@ pipeline {
 
         }
         stage('Sending Swarm'){
-
             //run playbook define inventory
+            
         }
         stage('Deploy'){
 
