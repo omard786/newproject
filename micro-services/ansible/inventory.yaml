@@ -1,11 +1,11 @@
 all:
 jenkins:
   hosts:
-    instance-1:
+    project:
 swarm_worker:
   hosts:
     w1:
     w2:
-nginx:
+proxy:
   hosts:
     nginx:
