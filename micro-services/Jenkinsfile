@@ -7,25 +7,35 @@ pipeline {
     stages{
         stage('Test'){
             steps{
-              sh 'bash ./test.sh'
+                dir("micro-services"){
+                sh 'bash test.sh'
+            }
+
             }
         }
         stage('Build'){
             steps{
+                dir("micro-services"){
                 sh 'docker-compose build '
+            }
+
             }
         }
         stage('Push'){
             steps{
+                dir("micro-services"){
                 sh "docker login -u ${env.docker_hub_credentials_USR} -p ${env.docker_hub_credentials_PSW}"
                 sh 'docker ps'
                 sh 'docker-compose push'
+            }
+
             }
 
 
         }
         stage('config and Set Swarm'){
             steps{
+                dir("micro-services/ansible"){
                  sh 'ansible-playbook -i inventory.yaml playbook.yaml'
              }
             
