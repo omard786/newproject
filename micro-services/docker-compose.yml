@@ -2,7 +2,7 @@ version: "3.8"
 services:
   service1_frontend:
     container_name: service1_frontend
-    image: service1_frontend:latest
+    image: omard786/service1_frontend:latest
     build: ./service1_frontend
     ports:
     - target: 5001
@@ -12,26 +12,23 @@ services:
       DATABASE_URI: ${DATABASE_URI}
   service2_letters:
     container_name: service2_letters
-    image: service2_letters:latest
+    image: omard786/service2_letters:latest
     build: ./service2_letters
     ports:
     -   target: 5002
-        published: 5002
         protocol: tcp
   service-three:
     container_name: service3_numbers
-    image: service3_numbers:latest
+    image: omard786/service3_numbers:latest
     build: ./service3_numbers
     ports:
     - target: 5003
-      published: 5003
       protocol: tcp
   service-four:
     container_name: service4_comb
-    image: service4_comb:latest
+    image: omard786/service4_comb:latest
     build: ./service4_comb
     ports:
     -   target: 5004
-        published: 5004
         protocol: tcp
   

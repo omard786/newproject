@@ -1,5 +1,3 @@
----
-# tasks file for manager
 - name: Init A New Swarm With Default Parameters
   become: true
   community.docker.docker_swarm:

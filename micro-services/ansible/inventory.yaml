@@ -1,14 +1,14 @@
-all:
-  hosts:
-    jenkins:
-      project:
-  hosts:
-    swarm_worker:
-      w1:
-      w2:
+all: 
   hosts:
     nginx:
-      nginx:
+  children:
+    managers:
+      hosts:
+        project:
+    workers:
+      hosts:
+        w1:
+        w2:
   vars:
        ansible_user: golde
     ansible_ssh_private_key_file: "/home/golde/.ssh/ansible_id_rsa"
