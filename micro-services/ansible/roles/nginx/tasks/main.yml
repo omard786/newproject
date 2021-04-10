@@ -1,4 +1,7 @@
-  - name: 'Install nginx with apt'
+  
+---
+# tasks file for nginx
+- name: 'Install nginx with apt'
   become: true
   apt:
     pkg:

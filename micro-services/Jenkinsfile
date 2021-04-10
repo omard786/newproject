@@ -4,14 +4,14 @@ pipeline{
             DATABASE_URI = credentials("DATABASE_URI")
         }
         stages{
-            stage('Test'){
-                steps{
-                    dir("micro-services"){
-                    sh "bash test.sh"  
-                    }
+            // stage('Test'){
+            //     steps{
+            //         dir("micro-services"){
+            //         sh "bash test.sh"  
+            //         }
 
-                    }
-                }
+            //         }
+            //     }
             stage('Build'){
                 steps{
                     dir("micro-services"){
