@@ -1,12 +1,12 @@
-- hosts: jenkins
+- hosts: manager
   roles:
   - docker
   - manager
 
-- hosts: swarm_worker
+- hosts: workers
   roles:
   - docker 
-  - worker
+  - workers
 
 - hosts: nginx
   roles: 
