@@ -23,6 +23,7 @@ pipeline{
             stage('Tag & Push Image'){
                 steps{
                     dir("micro-services"){
+                    sh "docker login -u ${env.docker_hub_credentials_USR} -p ${env.docker_hub_credentials_PSW}"
                     sh 'docker-compose push'
                     }
  
