@@ -1,9 +1,0 @@
-all:
-  hosts:
-    project:
-    workers:
-      w1:
-      w2:
-    proxy:
-      nginx:
-    vars: 

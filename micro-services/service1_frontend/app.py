@@ -8,7 +8,7 @@ from os import getenv
 
 app = Flask(__name__)
 #connecting to database
-app.config['SQLALCHEMY_DATABASE_URI'] = getenv("DATABASE_URI")
+app.config['SQLALCHEMY_DATABASE_URI'] = getenv('DATABASE_URI')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -21,7 +21,7 @@ class prize(db.Model):
 def home():
     s2_letter = requests.get('http://service2_letters:5002/letters').text
     s3_number = requests.get('http://service3_numbers:5003/numbers').text
-    s4_comb = requests.post('http://service4_comb:5004/generator',json={"service2_letter":s2_letter,"service3_numbers":s3_number}.json()
+    s4_comb = requests.post('http://service4_comb:5004/generator',json={"service2_letter":s2_letter,"service3_numbers":s3_number}).json()
     prize_given = prize(number_generated= s4_comb["combined_list"], prize_won = s4_comb["prize"])
     db.session.add(prize_given)
     db.session.commit()
