@@ -11,7 +11,7 @@ pipeline {
                 sh 'bash test.sh'
             }
 
-            }
+            
         }
         stage('Build'){
             steps{
@@ -19,7 +19,7 @@ pipeline {
                 sh 'docker-compose build '
             }
 
-            }
+            
         }
         stage('Push'){
             steps{
@@ -29,7 +29,7 @@ pipeline {
                 sh 'docker-compose push'
             }
 
-            }
+            
 
 
         }
