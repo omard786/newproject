@@ -7,7 +7,15 @@ all:
       w1:
       w2:
   hosts:
-    proxy:
+    nginx:
       nginx:
   vars:
-    
+       ansible_user: golde
+    ansible_ssh_private_key_file: "/home/golde/.ssh/ansible_id_rsa"
+    ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
+    ansible_user: jenkins
+    ansible_ssh_private_key_file: "/home/jenkins/.ssh/ansible_id_rsa"
+    ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
+    docker_users: 
+      - username: jenkins
+      - username: golde

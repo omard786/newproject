@@ -1,51 +1,48 @@
-pipeline {
-    agent any
-    environment{
-        DATABASE_URI = credentials('DATABASE_URI')
-        docker_hub_credentials = credentials('docker-hub-credentials')
-    }
-    stages{
-        stage('Test'){
-            steps{
-                dir("micro-services"){
-                sh 'bash test.sh'
-            }
+pipeline{
+        agent any
+        environment{
+            DATABASE_URI = credentials("DATABASE_URI")
+        }
+        stages{
+            stage('Test'){
+                steps{
+                    dir("micro-services"){
+                    sh "bash test.sh"  
+                    }
 
+                    }
+                }
+            stage('Build'){
+                steps{
+                    dir("micro-services"){
+                    sh "docker-compose build" 
+                    }
+
+                    }
+                }
+            stage('Tag & Push Image'){
+                steps{
+                    dir("micro-services"){
+                    sh 'docker-compose push'
+                    }
+ 
+                    }
+                }
+            stage('Swarm'){
+                steps{
+                    dir("micro-services/ansible"){
+                    sh "/home/jenkins/.local/bin/ansible-playbook -i inventory.yaml playbook.yaml"  
+                    }
             
-        }
-        stage('Build'){
-            steps{
-                dir("micro-services"){
-                sh 'docker-compose build '
+                }
             }
+            stage('Deploy App'){
+                steps{
+                    dir("micro-services"){
+                    sh "bash deploy.sh"
+                    }
 
-            
-        }
-        stage('Push'){
-            steps{
-                dir("micro-services"){
-                sh "docker login -u ${env.docker_hub_credentials_USR} -p ${env.docker_hub_credentials_PSW}"
-                sh 'docker ps'
-                sh 'docker-compose push'
+                }
             }
-
-            
-
-
         }
-        stage('config and Set Swarm'){
-            steps{
-                dir("micro-services/ansible"){
-                 sh 'ansible-playbook -i inventory.yaml playbook.yaml'
-             }
-            
-        }
-        stage('Deploy'){
-            steps{
-                sh 'docker stack deploy --compose-file docker-compose.yaml'
-                sh 'docker stack services'
-            }
-
-        }
-    }
 }

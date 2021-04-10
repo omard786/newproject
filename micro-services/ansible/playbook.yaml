@@ -8,6 +8,6 @@
   - docker 
   - worker
 
-- hosts: 
+- hosts: nginx
   roles: 
   - nginx

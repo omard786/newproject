@@ -5,6 +5,6 @@
   community.docker.docker_swarm:
     state: present
   register: swarm_info
-- name: Print Swarm Info
+- name: print swarm info
   debug:
     msg: "{{ swarm_info }}"
