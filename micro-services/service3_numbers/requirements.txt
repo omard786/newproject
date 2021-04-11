@@ -6,6 +6,14 @@ idna==2.10
 itsdangerous==1.1.0
 Jinja2==2.11.3
 MarkupSafe==1.1.1
-requests==2.25.1
+requests
+requests_mock
 urllib3==1.26.4
 Werkzeug==1.0.1
+SQLAlchemy<1.4
+flask_sqlalchemy 
+pymysql
+pytest
+pytest-cov
+flask-testing
+mock 

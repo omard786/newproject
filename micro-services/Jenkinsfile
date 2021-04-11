@@ -4,14 +4,14 @@ pipeline{
             DATABASE_URI = credentials("DATABASE_URI")
         }
         stages{
-            // stage('Test'){
-            //     steps{
-            //         dir("micro-services"){
-            //         sh "bash test.sh"  
-            //         }
+            stage('Test'){
+                steps{
+                    dir("micro-services"){
+                    sh "bash test.sh"  
+                    }
 
-            //         }
-            //     }
+                    }
+                }
             stage('Build'){
                 steps{
                     dir("micro-services"){
@@ -22,8 +22,7 @@ pipeline{
                 }
             stage('Tag & Push Image'){
                 steps{
-                    dir("micro-services"){
-                    sh "docker login -u ${env.docker_hub_credentials_USR} -p ${env.docker_hub_credentials_PSW}"
+                    sh 'docker ps && docker images'
                     sh 'docker-compose push'
                     }
  
@@ -31,8 +30,8 @@ pipeline{
                 }
             stage('Swarm'){
                 steps{
-                    dir("micro-services/ansible"){
-                    sh "/home/jenkins/.local/bin/ansible-playbook -i inventory.yaml playbook.yaml"  
+                    sh '-i inventory.yaml playbook.yaml'
+                    sh "cd /home/jenkins/.local/bin/ansible-playbook -i inventory.yaml playbook.yaml"  
                     }
             
                 }
