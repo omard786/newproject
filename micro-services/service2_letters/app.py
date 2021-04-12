@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 @app.route("/letters", methods=['GET'])
 def letter_gen():
-    letter_list = ['A','E','I','U','B','F','J','V']
+    letter_list = ['A','E','I','U','C','G','H','K']
     random_string = "".join(random.choice(letter_list) for i in range(4))
     return random_string
 
@@ -15,3 +15,4 @@ def letter_gen():
 if __name__ == '__main__':
     app.run(host = "0.0.0.0", port = 5002, debug= True )
 
+#CHANGED THE LETTERS 

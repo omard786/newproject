@@ -31,11 +31,11 @@ def generator():
 #inputting my tariff (conditions)
     prize = "nothing"
     if (vowel_count) >=2 and (even_count) >=2:
-        prize = "you have won a gold prize"
+        prize = "you have won a platinum prize"
     elif (vowel_count) <=2 and (even_count) <=1 or (vowel_count) <=1 and (even_count) <=2 :
-        prize = "you have won a silver prize"
+        prize = "you have won a gold prize"
     elif  (vowel_count) <=2 or (even_count) <=2:
-        prize = "you have won a bronze prize"
+        prize = "you have won a silver prize"
 
     return jsonify({
        "combined_list":combined_list, "vowel_count":vowel_count, "even_count":even_count, "odd_count": odd_count, "prize":prize,  
@@ -46,3 +46,4 @@ if __name__ == "__main__":
     app.run(host = '0.0.0.0', port = 5004, debug=True)
 
 
+#change the prizes to reflect that it is now harder to win the top prize 
