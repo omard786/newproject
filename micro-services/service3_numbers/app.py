@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 @app.route("/numbers", methods=['GET'])
 def number_gen():
-    number_list = ['1','2','3','4','5','6','7','8', '9']
+    number_list = ['1','2','3','4','5','6','7','8']
     random_string = "" 
     for i in range (4):
         random_string += str(random.randint(1,9))
